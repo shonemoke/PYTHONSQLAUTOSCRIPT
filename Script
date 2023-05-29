@@ -1,0 +1,29 @@
+import sqlite3
+
+def run_sql_query(query):
+    # Connects to the SQLite database
+    conn = sqlite3.connect('your_database.db')
+
+    # Create a cursor object to interact with the database
+    cursor = conn.cursor()
+
+    try:
+        # Execute the SQL query
+        cursor.execute(query)
+
+        # Fetch all the rows returned by the query
+        rows = cursor.fetchall()
+
+        # Print the results
+        for row in rows:
+            print(row)
+
+    except sqlite3.Error as e:
+        print("An error occurred:", e)
+
+    # Close the database connection
+    conn.close()
+
+# Example usage
+sql_query = "SELECT * FROM your_table"
+run_sql_query(sql_query)
